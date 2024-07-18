@@ -119,4 +119,8 @@ export class HousingService {
     //returns a housing location where the location id is equal to the given id
   }
   constructor() { }
+
+  submitApplication(firstName:string, lastName:string, email:string){
+    console.log(firstName,lastName,email)
+  }
 }
