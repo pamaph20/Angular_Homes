@@ -6,5 +6,10 @@ export interface HousingLocation {
     photo: string,
     availableUnits:number,
     wifi: boolean,
-    laundry:boolean
+    laundry:boolean,
+    Author : string,
+    ISBN : string,
+    ImgURL : string,
+    Title : string,
+    OLID : string
 }

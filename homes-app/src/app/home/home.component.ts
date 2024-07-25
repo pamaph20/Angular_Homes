@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { HousingLocation } from '../housing-location';
 import { HousingService } from '../housing.service';
+import { BooksService } from '../books.service';
+import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -24,6 +26,7 @@ import { HousingService } from '../housing.service';
 export class HomeComponent {
   housingLocationList: HousingLocation[] = []
   housingService: HousingService = inject(HousingService)
+  bookService: BooksService = inject(BooksService)
   filteredLocationList : HousingLocation[] = []
   constructor() {
     this.housingService.getAllHousingLocatons().then((housingLocationList : HousingLocation[]) => {
@@ -31,10 +34,8 @@ export class HomeComponent {
       this.filteredLocationList = housingLocationList;
     });
   }
-  filterResults(text:string){
-    if(!text) this.filteredLocationList != this.housingLocationList;
-    this.filteredLocationList = this.housingLocationList.filter(
-      housingLocationList => housingLocationList?.city.toLowerCase().includes(text.toLowerCase())
-    );
+  async filterResults(text:string){
+    const result = await this.bookService.searchBook(text)
+    console.log(result)
   }
 }
