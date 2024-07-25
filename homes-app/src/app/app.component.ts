@@ -10,16 +10,7 @@ import { BooksService } from './books.service';
   standalone: true,
   selector: 'app-root',
   imports: [HomeComponent, RouterModule, HttpClientModule],
-  template: `
-      <main>
-      <header class="brand-name">
-        <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
-      </header>
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
-    </main>
-  `,
+  templateUrl:"./app.component.html" ,
   styleUrls: ['./app.component.css'],
   providers: [BooksService]
   

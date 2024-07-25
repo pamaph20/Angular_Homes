@@ -9,18 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, HousingLocationComponent],
-  template: `
-   <section>
-      <form>
-        <input type="text" placeholder="Filter by city" #filter/>
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-      </form>
-    </section>
-    <section class="results">
-      <app-housing-location *ngFor = "let housingLocation of filteredLocationList" [housingLocation] = "housingLocation"></app-housing-location>
-    </section>
-    `
-  ,
+  templateUrl:'./home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
@@ -29,13 +18,17 @@ export class HomeComponent {
   bookService: BooksService = inject(BooksService)
   filteredLocationList : HousingLocation[] = []
   constructor() {
-    this.housingService.getAllHousingLocatons().then((housingLocationList : HousingLocation[]) => {
+    this.housingService.getAllBooks().then((housingLocationList : HousingLocation[]) => {
       this.housingLocationList = housingLocationList;
       this.filteredLocationList = housingLocationList;
     });
   }
   async filterResults(text:string){
     const result = await this.bookService.searchBook(text)
+    console.log(result)
+  }
+  async addBook(text:string){
+    const result = await this.bookService.addBook(text);
     console.log(result)
   }
 }

@@ -11,19 +11,18 @@ export class HousingService {
   //testing info
   lib_name = "Drews%20Library" 
   user_id = "1"
-  bookUrl = "http://localhost:3000/books/search/"
-  async getAllHousingLocatons (): Promise<HousingLocation[]> {
+  bookUrl = "http://localhost:3000/books/search"
+  async getAllBooks (): Promise<HousingLocation[]> {
     /***\
      * Function that returns all housing locations via an array
      */
-    const data = await fetch(this.libUrl)
+    const data = await fetch(`${this.libSearchurl}/${this.lib_name}/${this.user_id}`)
     return await data.json() ?? []
   }
   
-  async getHousingLocationById(olid: number): Promise<HousingLocation | undefined> {
+  async getHousingLocationById(olid: string): Promise<HousingLocation | undefined> {
     //takes an id returns a housing location
-    console.log(olid)
-    const data = await fetch(`${this.url}/${olid}`);
+    const data = await fetch(`${this.bookUrl}/${olid}`);
     return await data.json() ?? {};
     //returns a housing location where the location id is equal to the given id
   }

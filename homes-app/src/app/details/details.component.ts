@@ -22,7 +22,9 @@ export class DetailsComponent {
     email : new FormControl("")
   })
   constructor() {
-    const housingLocationID = Number(this.route.snapshot.params["olid"]);
+    const housingLocationID = (this.route.snapshot.params["olid"]);
+    console.log(this.route.snapshot)
+
     this.housingService.getHousingLocationById(housingLocationID).then(housingLocation=>{
       this.housingLocation = housingLocation;
     });
